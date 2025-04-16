@@ -1,0 +1,15 @@
+export { default as FacebookIcon } from './facebookIcon.svg'
+export { default as InstagramIcon } from './instagramIcon.svg'
+export { default as YoutubeIcon } from './youtubeIcon.svg'
+export { default as BurgerDropdownIcon } from './burgerDropDownIcon.svg'
+export { default as ExtrabonusLogo } from './extrabonus88.svg'
+
+export { default as RouletteTable } from '../homeBackground/roulette.svg'
+export { default as Jackpot } from '../homeBackground/jackpot.svg'
+
+export { default as RescueBonusBanner } from '../promotionBanner/Artboard_1.avif'
+export { default as MarcMarquezGiveaway } from '../promotionBanner/wb_telegram_banner_[V2]-04-04.avif'
+export { default as WelcomeBonus } from '../promotionBanner/Artboard_1_copy.avif'
+export { default as Lucky7Bonus } from '../promotionBanner/lucky71680x600.avif'
+export { default as ScratchAndWin } from '../promotionBanner/Scratch_and_win.avif'
+export { default as ClaimAngpauNow } from '../promotionBanner/Claim_Angpau_Now.avif'
