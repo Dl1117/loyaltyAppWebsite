@@ -2,11 +2,6 @@
 import horseCartoonVideo from '@/assets/video/horse.mp4'
 
 // Import your images directly
-import FreeImage from '@/assets/fiveLittleElement/Free.png'
-import BiggestOnlineImage from '@/assets/fiveLittleElement/Biggest_Online.png'
-import MillionCoinsImage from '@/assets/fiveLittleElement/1_Million_Coins.png'
-import NewExcitementImage from '@/assets/fiveLittleElement/New_excitement.png'
-import Over170Image from '@/assets/fiveLittleElement/Over_170.png'
 import CardImg1 from '@/assets/fourLittleCardsMascot/card-img-1.png'
 import CardImg2 from '@/assets/fourLittleCardsMascot/card-img-2.png'
 import CardImg3 from '@/assets/fourLittleCardsMascot/card-img-3.png'
@@ -18,7 +13,25 @@ import Tiger from '@/assets/topFreeSlotGamesOnline/tiger.png'
 import Train from '@/assets/topFreeSlotGamesOnline/train.png'
 import BackgroundMouseGold from '@/assets/homeBackground/background_desktop.jpg'
 import LucyJackpotBackground from '@/assets/homeBackground/lucy_footer.png'
-import { RouletteTable, Jackpot, Cloud } from '@/assets/icons'
+import {
+  RouletteTable,
+  Jackpot,
+  Cloud,
+  TwoIphones,
+  SlotMachine,
+  Trophy,
+  Puzzle,
+  Gift,
+  MoneyBag,
+  BlueCloud,
+  HalloweenBackground,
+  FantasyScene,
+  PlayersReviews,
+  Astronaut,
+  RabbitSkateBoard,
+  PokerCow,
+  Wukong,
+} from '@/assets/icons'
 import { ref } from 'vue'
 import PlayNowButton from '@/assets/icons/playNowButton/PlayNowButton.png'
 
@@ -29,27 +42,27 @@ const toggleAnswer = (index) => {
 }
 const imagesSentences = [
   {
-    image: FreeImage,
+    image: SlotMachine,
     title: 'OVER 170',
     sentence: 'FREE-TO-PLAY SLOTS',
   },
   {
-    image: BiggestOnlineImage,
+    image: Trophy,
     title: 'WORLD’S #1 FREE',
     sentence: 'SOCIAL SLOT GAME',
   },
   {
-    image: MillionCoinsImage,
+    image: Puzzle,
     title: 'BIGGEST ONLINE',
     sentence: 'SLOT COMMUNITY',
   },
   {
-    image: NewExcitementImage,
+    image: Gift,
     title: 'NEW EXCITEMENT',
     sentence: 'EVERY DAY',
   },
   {
-    image: Over170Image,
+    image: MoneyBag,
     title: '1 MILLION COINS',
     sentence: 'WELCOME BONUS',
   },
@@ -57,28 +70,28 @@ const imagesSentences = [
 
 const mascotAndContext = [
   {
-    image: CardImg1,
+    image: Wukong,
     word1: 'OVER',
     word2: 'FANS ON FACEBOOK',
     eyeCatchyWord: '13M',
     button: '',
   },
   {
-    image: CardImg2,
+    image: RabbitSkateBoard,
     word1: '',
     word2: 'MEMBERS IN THE BIGGEST ONLINE SLOT COMMUNITY',
     eyeCatchyWord: '+700k',
     button: '',
   },
   {
-    image: CardImg3,
+    image: PokerCow,
     word1: '',
     word2: 'CHANNELS ON YOUTUBE, FACEBOOK & INSTAGRAM',
     eyeCatchyWord: '3',
     button: '',
   },
   {
-    image: CardImg4,
+    image: Astronaut,
     word1: 'MORE THAN',
     word2: 'OF PLAYERS ARE IN SLOTOCLANS',
     eyeCatchyWord: '60%',
@@ -176,21 +189,26 @@ const faq = [
       </button> -->
       <img :src="PlayNowButton" alt="logo" class="h-20" />
     </div>
+  </div>
 
-    <div class="absolute bottom-0 left-0 w-full z-20">
-      <img :src="Cloud" alt="Cloud" class="w-full" />
-    </div>
+  <!-- Cloud Image - positioned between sections -->
+  <div class="relative w-full z-20 -mt-[15%] md:-mt-[15%]">
+    <img :src="Cloud" alt="Cloud" class="w-full h-auto" />
   </div>
 
   <div class="flex flex-col md:flex-row items-center gap-6 h-auto md:h-1/3">
     <!-- Top (mobile) / Left (desktop): Image -->
     <div class="w-full md:flex-1">
-      <img src="@/assets/lucys.png" alt="lucys" class="w-full h-auto object-contain" />
+      <img
+        :src="TwoIphones"
+        alt="Two Iphones"
+        class="w-full h-[300px] md:h-[500px] object-contain ml-5 md:ml-10"
+      />
     </div>
 
     <!-- Bottom (mobile) / Right (desktop): Text -->
     <div class="w-full md:flex-1 text-black text-sm leading-relaxed md:px-6">
-      <h1 class="text-2xl md:text-3xl font-bold mb-4">PLAY FREE SLOTS</h1>
+      <h1 class="text-2xl md:text-3xl font-bold mb-4">GET EXTRA BONUS NOW !</h1>
       <p>
         Slotomania, the world's #1 free slots game, was developed in 2011 by Playtika®. Slotomania
         offers 170+ free online slot games, various fun features, mini-games, free bonuses, and more
@@ -209,7 +227,7 @@ const faq = [
   <div class="mt-20">
     <!-- WHY SLOTOMANIA Title centered at the top of all the images -->
     <div class="mb-8">
-      <h2 class="text-2xl md:text-3xl font-bold text-center">WHY SLOTOMANIA?</h2>
+      <h2 class="text-2xl md:text-3xl font-bold text-center">WHY EXTRA BONUS?</h2>
     </div>
 
     <!-- Grid layout for mobile, flex row for desktop -->
@@ -241,13 +259,27 @@ const faq = [
     </ul>
   </div>
 
-  <div class="mt-20 w-full">
+  <!-- Halloween Background Section -->
+  <div class="mt-20 w-full relative">
     <div>
-      <img :src="Jackpot" alt="Jackpot" class="w-full" />
+      <img :src="HalloweenBackground" alt="Halloween Background" class="w-full" />
+    </div>
+
+    <!-- Blue Cloud Transition -->
+    <div class="relative w-full z-20 -mt-[15%] md:-mt-[20.5%]">
+      <img :src="BlueCloud" alt="Blue Cloud" class="w-full h-auto" />
     </div>
   </div>
-  <div class="mt-20">
-    <div class="flex flex-col md:flex-row items-center justify-between w-full gap-6 md:gap-0">
+
+  <div class="relative z-0 -mt-1">
+    <div class="absolute -z-10">
+      <img :src="FantasyScene" alt="3D Fantasy Scene" class="h-46" />
+    </div>
+
+    <!-- SLOTOMANIA GOING SOCIAL -->
+    <div
+      class="flex flex-col md:flex-row items-center justify-between w-full gap-6 md:gap-0 px-4 md:px-20 py-10"
+    >
       <div class="w-full md:flex-1 text-center">
         <div class="text-2xl font-bold">SLOTOMANIA GOING SOCIAL</div>
       </div>
@@ -261,81 +293,87 @@ const faq = [
         </p>
       </div>
     </div>
-  </div>
 
-  <div class="mt-20">
-    <div class="flex justify-between gap-6">
-      <!-- Mascot Context Items -->
-      <ul class="w-full flex flex-col md:flex-row flex-wrap justify-between gap-6">
+    <!-- MASCOT CONTEXT -->
+    <div class="mt-20 px-4 md:px-20 pb-20">
+      <ul
+        class="w-full flex flex-col md:flex-row flex-wrap justify-center md:justify-between gap-4"
+      >
         <li
           v-for="(mascotContext, index) in mascotAndContext"
           :key="index"
-          class="w-full md:flex-1 flex flex-col items-center text-center"
+          class="w-full md:w-[45%] lg:w-[22%] flex flex-col items-center text-center relative"
         >
-          <!-- 1st and 3rd Mascot: Smaller image above text -->
-          <div v-if="index === 0 || index === 2" class="w-full">
+          <!-- Image on top (index 0, 2) -->
+          <div v-if="index === 0 || index === 2" class="w-full flex flex-col items-center relative">
             <img
               :src="mascotContext.image"
               alt="mascot"
-              class="w-24 h-24 object-contain -mb-4 mx-auto"
+              class="w-48 h-48 md:w-56 md:h-56 object-contain mb-[-5rem] z-10 relative"
             />
-            <div class="bg-gray-100 p-4">
-              <p class="font-semibold text-xl">{{ mascotContext.word1 }}</p>
-              <h3 class="text-2xl font-bold">{{ mascotContext.eyeCatchyWord }}</h3>
-              <p class="text-sm">{{ mascotContext.word2 }}</p>
+            <div class="bg-[#009DFF] rounded-xl text-white pt-20 pb-6 px-4 w-[90%] opacity-80">
+              <p class="font-semibold text-xl md:text-2xl">{{ mascotContext.word1 }}</p>
+              <h3 class="text-3xl md:text-4xl font-bold my-2">{{ mascotContext.eyeCatchyWord }}</h3>
+              <p class="text-base md:text-lg">{{ mascotContext.word2 }}</p>
+              <button
+                class="mt-4 bg-orange-400 hover:bg-orange-500 transition px-4 py-2 rounded-full text-white text-sm font-semibold"
+              >
+                JOIN NOW
+              </button>
             </div>
           </div>
 
-          <!-- 2nd and 4th Mascot: Larger image below text -->
-          <div v-if="index === 1 || index === 3" class="w-full flex flex-col items-center">
-            <!-- Text and image in the same container -->
-            <div class="bg-gray-100 flex flex-col items-center p-4 w-full">
-              <!-- Text Section -->
-              <p class="font-semibold text-xl">{{ mascotContext.word1 }}</p>
-              <h3 class="text-2xl font-bold">{{ mascotContext.eyeCatchyWord }}</h3>
-              <p class="text-sm">{{ mascotContext.word2 }}</p>
-
-              <!-- Image Section below text -->
-              <div class="mt-4">
-                <img
-                  :src="mascotContext.image"
-                  alt="mascot"
-                  class="w-32 h-32 object-contain mx-auto"
-                />
-              </div>
+          <!-- Image on bottom (index 1, 3) -->
+          <div v-else class="w-full flex flex-col items-center">
+            <div
+              class="bg-[#009DFF] rounded-xl text-white pt-6 pb-60 px-4 w-[90%] opacity-80 relative z-10"
+            >
+              <p class="font-semibold text-xl md:text-2xl">{{ mascotContext.word1 }}</p>
+              <h3 class="text-3xl md:text-4xl font-bold my-2">{{ mascotContext.eyeCatchyWord }}</h3>
+              <p class="text-base md:text-lg">{{ mascotContext.word2 }}</p>
+              <button
+                class="mt-4 bg-orange-400 hover:bg-orange-500 transition px-4 py-2 rounded-full text-white text-sm font-semibold"
+              >
+                JOIN NOW
+              </button>
             </div>
+            <img
+              :src="mascotContext.image"
+              alt="mascot"
+              class="-mt-[225px] w-48 h-48 md:w-80 md:h-80 object-contain relative z-20"
+            />
           </div>
         </li>
       </ul>
     </div>
-  </div>
 
-  <div class="mt-20">
-    <!-- Title for reviews -->
-    <h2 class="text-2xl font-bold text-center mb-8">SLOTOMANIA PLAYER'S REVIEWS</h2>
-
-    <!-- Reviews container with horizontal scrolling -->
-    <div class="px-4 md:px-40">
-      <ul
-        class="flex gap-6 overflow-x-auto pb-6 snap-x snap-mandatory scroll-smooth whitespace-nowrap"
-      >
-        <li
-          v-for="(humanReview, index) in humanReview"
-          :key="index"
-          class="inline-flex flex-col items-center p-4 bg-gray-100 rounded-lg snap-start min-w-[250px] md:min-w-[300px]"
+    <!-- Slotomania Players Reviews with custom background that overwrites FantasyScene -->
+    <div
+      class="mt-40 relative z-0 bg-cover bg-center"
+      :style="`background-image: url(${PlayersReviews});`"
+    >
+      <div class="px-4 md:px-40 pb-20 relative z-10">
+        <h2 class="text-2xl font-bold text-center mb-8">SLOTOMANIA PLAYER'S REVIEWS</h2>
+        <ul
+          class="flex gap-6 overflow-x-auto pb-6 snap-x snap-mandatory scroll-smooth whitespace-nowrap"
         >
-          <!-- Review content -->
-          <div class="text-center whitespace-normal">
-            <img
-              :src="humanReview.image"
-              alt="Profile Picture"
-              class="w-24 h-24 rounded-full mb-4 mx-auto"
-            />
-            <h3 class="font-semibold text-lg mb-2">{{ humanReview.name }}</h3>
-            <p class="text-sm text-gray-700">{{ humanReview.review }}</p>
-          </div>
-        </li>
-      </ul>
+          <li
+            v-for="(humanReview, index) in humanReview"
+            :key="index"
+            class="inline-flex flex-col items-center p-4 bg-gray-100 rounded-lg snap-start min-w-[250px] md:min-w-[300px]"
+          >
+            <div class="text-center whitespace-normal">
+              <img
+                :src="humanReview.image"
+                alt="Profile Picture"
+                class="w-24 h-24 rounded-full mb-4 mx-auto"
+              />
+              <h3 class="font-semibold text-lg mb-2">{{ humanReview.name }}</h3>
+              <p class="text-sm text-gray-700">{{ humanReview.review }}</p>
+            </div>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 
