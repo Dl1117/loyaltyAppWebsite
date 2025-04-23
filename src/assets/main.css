@@ -3,6 +3,14 @@
 @tailwind components;
 @tailwind utilities;
 
+.neuron {
+  font-family: "Neuron", "bold";
+}
+
+.afacad {
+  font-family: "Afacad", "medium";
+}
+
 /* #app {
   max-width: 1280px;
   margin: 0 auto;

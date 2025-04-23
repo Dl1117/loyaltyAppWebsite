@@ -20,6 +20,7 @@ import BackgroundMouseGold from '@/assets/homeBackground/background_desktop.jpg'
 import LucyJackpotBackground from '@/assets/homeBackground/lucy_footer.png'
 import { RouletteTable, Jackpot, Cloud } from '@/assets/icons'
 import { ref } from 'vue'
+import PlayNowButton from '@/assets/icons/playNowButton/PlayNowButton.png'
 
 const activeIndex = ref(null)
 
@@ -168,11 +169,12 @@ const faq = [
     >
       <div class="text-2xl md:text-4xl font-bold drop-shadow-lg">PLAY SLOTOMANIA</div>
       <div class="text-lg md:text-2xl mt-2 drop-shadow-md">THE #1 FREE SLOT GAME</div>
-      <button
+      <!-- <button
         class="mt-10 px-8 py-4 text-2xl font-bold rounded-full bg-yellow-400 text-black hover:bg-yellow-500 transition-all border-2 border-black shadow-lg"
       >
         PLAY NOW
-      </button>
+      </button> -->
+      <img :src="PlayNowButton" alt="logo" class="h-20" />
     </div>
 
     <div class="absolute bottom-0 left-0 w-full z-20">

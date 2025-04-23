@@ -1,88 +1,149 @@
+<script setup>
+import { ref, onMounted, onBeforeUnmount } from 'vue'
+import WbLogo from '@/assets/icons/wbLogo/WbLogo.png'
+import WbLogo1 from '@/assets/icons/wbLogo/WbLogo1.png'
+import Facebook from '@/assets/icons/socialMedia/facebook.png'
+import Instagram from '@/assets/icons/socialMedia/instagram.png'
+import Whatsapp from '@/assets/icons/socialMedia/whatsapp.png'
+import footerCertification from '@/assets/icons/footerIcon/footerCertification.png'
+import footerLicense from '@/assets/icons/footerIcon/footerLicense.png'
+import footerPayment from '@/assets/icons/footerIcon/footerPayment.png'
+import footerSecurity from '@/assets/icons/footerIcon/footerSecurity.png'
+
+// Reactive state for mobile detection
+const mobile = ref(false)
+
+// Footer links similar to the image
+const footerLinks = [
+  { label: 'COOKIE SETTINGS', route: '' },
+  { label: 'TERMS OF SERVICE', route: '' },
+  { label: 'PRIVACY NOTICE', route: '' },
+  { label: 'POKIES', route: '' },
+  { label: 'RESPONSIBLE GAMING', route: '' },
+]
+
+// Social media links
+const socialMediaLinks = [
+  { label: 'Facebook', icon: Facebook, route: '' },
+  { label: 'Instagram', icon: Instagram, route: '' },
+  { label: 'Whatsapp', icon: Whatsapp, route: '' },
+]
+
+// Check if mobile
+const checkMobile = () => {
+  mobile.value = window.innerWidth < 768
+}
+
+// Lifecycle hooks
+onMounted(() => {
+  window.addEventListener('resize', checkMobile)
+  checkMobile() // Initialize mobile state
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', checkMobile)
+})
+</script>
+
 <template>
-  <div class="bg-gray-900 text-white py-12 px-4">
-    <div class="max-w-6xl mx-auto">
-      <!-- Logo -->
-      <div class="mb-8">
-        <h1 class="text-3xl font-bold text-yellow-400">SLOTOMANIA</h1>
+  <!-- Desktop Footer -->
+  <div
+    v-if="!mobile"
+    class="bg-gradient-to-t from-blue-900 via-blue-500 to-blue-300 text-white py-12 px-32 flex flex-col gap-10"
+  >
+    <div class="grid grid-cols-3 items-center px-10">
+      <!-- Column 1: Logo -->
+      <div class="flex justify-start">
+        <img :src="WbLogo1" alt="logo" class="h-12" />
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-        <!-- ABOUT Section -->
-        <div>
-          <h2 class="text-xl font-semibold mb-4 text-yellow-400">ABOUT</h2>
-          <ul class="space-y-2">
-            <li><a href="#" class="hover:text-yellow-300">FREE COINS</a></li>
-            <li><a href="#" class="hover:text-yellow-300">VIP</a></li>
-            <li><a href="#" class="hover:text-yellow-300">CUSTOMER SUPPORT</a></li>
-            <li><a href="#" class="hover:text-yellow-300">SHOP</a></li>
-          </ul>
-        </div>
-
-        <!-- FOLLOW US ON Section -->
-        <div>
-          <h2 class="text-xl font-semibold mb-4 text-yellow-400">FOLLOW US ON</h2>
-          <ul class="space-y-2">
-            <li><a href="#" class="hover:text-yellow-300">SING</a></li>
-            <li><a href="#" class="hover:text-yellow-300">Name Share</a></li>
-            <li><a href="#" class="hover:text-yellow-300">App Store</a></li>
-            <li><a href="#" class="hover:text-yellow-300">Google Play</a></li>
-          </ul>
-        </div>
-
-        <!-- COOKIE SETTINGS Section -->
-        <div>
-          <h2 class="text-xl font-semibold mb-4 text-yellow-400">COOKIE SETTINGS</h2>
-          <ul class="space-y-2">
-            <li><a href="#" class="hover:text-yellow-300">TERMS OF SERVICE</a></li>
-            <li><a href="#" class="hover:text-yellow-300">PRIVACY NOTICE</a></li>
-            <li><a href="#" class="hover:text-yellow-300">POKES</a></li>
-            <li><a href="#" class="hover:text-yellow-300">RESPONSIBLE GAMING</a></li>
-            <li><a href="#" class="hover:text-yellow-300">EU DSA</a></li>
-          </ul>
-        </div>
-
-        <!-- Legal Text -->
-        <div class="md:col-span-1 lg:col-span-1">
-          <p class="text-xs text-gray-400">
-            SLOTOMANIA IS INTENDED FOR THOSE 21 AND OLDER FOR AMUSEMENT PURPOSES ONLY AND DOES NOT
-            OFFER 'REAL MONEY' GAMBLING, OR AN OPPORTUNITY TO WIN REAL MONEY OR REAL PRIZES BASED ON
-            GAME PLAY. PLAYING OR SUCCESS IN THIS GAME DOES NOT IMPLY FUTURE SUCCESS AT 'REAL MONEY'
-            GAMBLING.
-          </p>
-          <p class="text-xs text-gray-400 mt-4">
-            SLOTOMANIA DOES NOT REQUIRE PAYMENT TO ACCESS AND PLAY, BUT IT ALSO ALLOWS YOU TO
-            PURCHASE VIRTUAL ITEMS WITH REAL MONEY. SLOTOMANIA MAY ALSO CONTAIN ADVERTISING. YOU MAY
-            REQUIRE AN INTERNET CONNECTION TO PLAY SLOTOMANIA AND ACCESS ITS SOCIAL FEATURES.
-          </p>
-          <p class="text-xs text-gray-400 mt-4">
-            BY ACCESSING AND PLAYING THIS GAME, YOU AGREE TO FUTURE GAME UPDATES AS RELEASED ON THIS
-            WEBSITE. YOU MAY CHOOSE TO UPDATE THIS GAME, BUT IF YOU DO NOT UPDATE, YOUR GAME
-            EXPERIENCE AND FUNCTIONALITIES MAY BE REDUCED.
-          </p>
-        </div>
+      <!-- Column 2: Social Media Icons -->
+      <div class="flex justify-center gap-2">
+        <img :src="Whatsapp" alt="whatsapp" class="w-8 h-8" />
+        <img :src="Instagram" alt="instagram" class="w-8 h-8" />
+        <img :src="Facebook" alt="facebook" class="w-8 h-8" />
       </div>
 
-      <!-- Copyright -->
-      <div class="border-t border-gray-700 mt-8 pt-8">
-        <p class="text-xs text-gray-500 text-center">© 2023 SLOTOMANIA. ALL RIGHTS RESERVED.</p>
+      <!-- Column 3: Security -->
+      <div class="flex flex-col gap-2 afacad items-end">
+        <span>Security</span>
+        <img :src="footerSecurity" alt="footerSecurity" class="h-8" />
       </div>
+    </div>
+
+    <div class="grid grid-cols-3 items-center border-t border-white afacad pt-8 px-10">
+      <!-- Column 1: License -->
+      <div class="flex flex-col gap-2 items-start">
+        <span>License</span>
+        <img :src="footerLicense" alt="footerLicense" class="h-8" />
+      </div>
+
+      <!-- Column 2: Certification -->
+      <div class="flex flex-col gap-2 items-center">
+        <span>Certification</span>
+        <img :src="footerCertification" alt="footerCertification" class="h-14" />
+      </div>
+
+      <!-- Column 3: Supported Bank Payment -->
+      <div class="flex flex-col gap-2 items-end">
+        <span>Supported Bank Payment</span>
+        <img :src="footerPayment" alt="footerPayment" class="h-14" />
+      </div>
+    </div>
+
+    <div class="border-t border-white afacad">
+      <p class="text-lg text-center pt-4">© 2025 by Winbox88.one All Rights Reserved.</p>
+    </div>
+  </div>
+
+  <!-- Mobile Footer -->
+  <div v-else class="bg-custom-blue-11 text-white flex flex-col">
+    <!-- Logo Section -->
+    <div class="flex justify-center py-6">
+      <img :src="WbLogo" alt="logo" class="h-12" />
+    </div>
+
+    <!-- Footer Links -->
+    <div class="flex flex-col items-center gap-4 py-4">
+      <router-link
+        v-for="link in footerLinks"
+        :key="link.label"
+        :to="{ name: link.route }"
+        class="text-white text-sm font-medium hover:text-blue-300"
+      >
+        {{ link.label }}
+      </router-link>
+    </div>
+
+    <!-- Follow Us Section -->
+    <div class="flex flex-col items-center py-6 border-t border-purple-800 mt-4">
+      <p class="text-sm mb-4">FOLLOW US ON</p>
+      <div class="flex gap-6">
+        <a
+          v-for="social in socialMediaLinks"
+          :key="social.label"
+          href="#"
+          class="w-8 h-8 rounded-full flex items-center justify-center"
+        >
+          <img :src="social.icon" :alt="social.label" class="w-8 h-8" />
+        </a>
+      </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="py-4 text-center text-xs">
+      <p>© 2025 by Winbox88.one All Rights Reserved.</p>
     </div>
   </div>
 </template>
 
-<script>
-export default {
-  name: 'Footer',
-  data() {
-    return {
-      scrollPosition: 0,
-      mobile: false, // hardcoded for testing
-      mobileNav: false,
-    }
-  },
-}
-</script>
-
 <style scoped>
-/* Additional custom styles if needed */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
 </style>
