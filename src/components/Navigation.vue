@@ -79,8 +79,8 @@ export default {
         { label: 'Home', route: 'home' },
         { label: 'About', route: '' },
         { label: 'Promotion', route: 'promotion' },
-        { label: 'Register', route: '' },
-        { label: 'Login', route: '' },
+        { label: 'Register', route: 'register' },
+        { label: 'Login', route: 'login' },
       ],
       socialMedia: [
         { label: 'Youtube', icon: YoutubeIcon, route: '' },

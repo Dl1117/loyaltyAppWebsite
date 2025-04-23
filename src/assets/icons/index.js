@@ -13,3 +13,15 @@ export { default as WelcomeBonus } from '../promotionBanner/Artboard_1_copy.avif
 export { default as Lucky7Bonus } from '../promotionBanner/lucky71680x600.avif'
 export { default as ScratchAndWin } from '../promotionBanner/Scratch_and_win.avif'
 export { default as ClaimAngpauNow } from '../promotionBanner/Claim_Angpau_Now.avif'
+
+export { default as CloseEyesIcon } from './SignUpForm/CloseEyesIcon.svg'
+export { default as EyeVisible } from './EyeVisible.svg'
+export { default as PasswordFormIcon } from './SignUpForm/PasswordFormIcon.svg'
+export { default as SignUpInfo } from './SignUpForm/SignUpInfo.svg'
+export { default as UserFormIcon } from './SignUpForm/UserFormIcon.svg'
+export { default as wbDropdownIcon } from './wbDropdownIcon.svg'
+export { default as ArrowLeft } from './ArrowLeft.svg'
+export { default as TickIcon } from './SignUpForm/TickIcon.svg'
+export { default as XIcon } from './SignUpForm/XIcon.svg'
+
+export { default as Cloud } from '../homeBackground/cloud.svg'

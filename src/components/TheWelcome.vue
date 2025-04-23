@@ -18,7 +18,7 @@ import Tiger from '@/assets/topFreeSlotGamesOnline/tiger.png'
 import Train from '@/assets/topFreeSlotGamesOnline/train.png'
 import BackgroundMouseGold from '@/assets/homeBackground/background_desktop.jpg'
 import LucyJackpotBackground from '@/assets/homeBackground/lucy_footer.png'
-import { RouletteTable, Jackpot } from '@/assets/icons'
+import { RouletteTable, Jackpot, Cloud } from '@/assets/icons'
 import { ref } from 'vue'
 
 const activeIndex = ref(null)
@@ -173,6 +173,10 @@ const faq = [
       >
         PLAY NOW
       </button>
+    </div>
+
+    <div class="absolute bottom-0 left-0 w-full z-20">
+      <img :src="Cloud" alt="Cloud" class="w-full" />
     </div>
   </div>
 
