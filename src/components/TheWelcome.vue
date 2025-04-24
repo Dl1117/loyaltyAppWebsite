@@ -35,6 +35,7 @@ import {
   WaveBackground,
   ZeusBackground,
   MobileZeusBackground,
+  PlayerReviewLarge,
 } from '@/assets/icons'
 import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import PlayNowButton from '@/assets/icons/playNowButton/PlayNowButton.png'
@@ -218,6 +219,8 @@ const prevSlide = () => {
     currentSlide.value--
   }
 }
+// const playerReviewBackground = ref(window.innerWidth >= 1080 ? PlayerReviewLarge : PlayersReviews)
+const playerReviewBackground = ref(PlayersReviews)
 
 onMounted(() => {
   window.addEventListener('resize', () => {
@@ -225,6 +228,9 @@ onMounted(() => {
     if (currentSlide.value > slotGames.length - visibleSlides.value) {
       currentSlide.value = Math.max(0, slotGames.length - visibleSlides.value)
     }
+    // playerReviewBackground.value = windowWidth.value >= 1080 ? FantasyScene : PlayersReviews
+    // playerReviewBackground.value = windowWidth.value >= 1080 ? FantasyScene : PlayersReviews
+    console.log('new background image', playerReviewBackground.value)
   })
 })
 const isMobileView = ref(false)
@@ -449,60 +455,54 @@ onBeforeUnmount(() => {
     </div>
   </div>
 
-  <!-- Slotomania Players Reviews with custom background that overwrites FantasyScene -->
-  <div class="relative z-0 pb-28">
-    <!-- Background image with negative z-index -->
-    <div class="absolute inset-0 -z-10">
+  <!-- Slotomania Players Reviews section -->
+  <div class="relative">
+    <!-- Background gradient container -->
+    <div class="relative z-0 pb-24">
       <div
-        class="w-full h-[85%] bg-gradient-to-b from-custom-blue-12 to-custom-blue-13 backdrop-blur-3xl"
-      ></div>
-    </div>
-
-    <!-- Background image with negative z-index -->
-    <div class="absolute inset-0 z-20">
-      <div
-        class="w-full h-full bg-no-repeat"
-        :style="{
-          backgroundImage: `url(${PlayersReviews})`,
-          backgroundSize: 'fit',
-        }"
-      ></div>
-    </div>
-
-    <div class="px-4 md:px-40 pb-80 z-10 pt-8">
-      <h2 class="text-2xl font-bold text-center mb-8">SLOTOMANIA PLAYER'S REVIEWS</h2>
-      <ul
-        class="flex gap-6 overflow-x-auto pb-6 snap-x snap-mandatory scroll-smooth whitespace-nowrap"
+        class="px-4 md:px-40 pb-80 z-10 pt-8 bg-gradient-to-b from-custom-blue-12 to-custom-blue-13 backdrop-blur-3xl"
       >
-        <li
-          v-for="(humanReview, index) in humanReview"
-          :key="index"
-          class="inline-flex flex-col items-center p-4 bg-gray-100 rounded-lg snap-start min-w-[250px] md:min-w-[300px]"
+        <h2 class="text-2xl font-bold text-center mb-8">SLOTOMANIA PLAYER'S REVIEWS</h2>
+        <ul
+          class="flex gap-6 overflow-x-auto pb-6 snap-x snap-mandatory scroll-smooth whitespace-nowrap"
         >
-          <div class="text-center whitespace-normal">
-            <img
-              :src="humanReview.image"
-              alt="Profile Picture"
-              class="w-24 h-24 rounded-full mb-4 mx-auto"
-            />
-            <h3 class="font-semibold text-lg mb-2">{{ humanReview.name }}</h3>
-            <p class="text-sm text-gray-700">{{ humanReview.review }}</p>
-          </div>
-        </li>
-      </ul>
+          <li
+            v-for="(humanReview, index) in humanReview"
+            :key="index"
+            class="inline-flex flex-col items-center p-4 bg-gray-100 rounded-lg snap-start min-w-[250px] md:min-w-[300px]"
+          >
+            <div class="text-center whitespace-normal">
+              <img
+                :src="humanReview.image"
+                alt="Profile Picture"
+                class="w-24 h-24 rounded-full mb-4 mx-auto"
+              />
+              <h3 class="font-semibold text-lg mb-2">{{ humanReview.name }}</h3>
+              <p class="text-sm text-gray-700">{{ humanReview.review }}</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Overlapping image with higher z-index -->
+    <div class="absolute bottom-0 left-0 right-0 z-10">
+      <img :src="PlayersReviews" alt="Players Reviews Background" class="w-full h-auto" />
     </div>
   </div>
 
-  <div
-    class="z-0 w-full bg-cover bg-no-repeat"
-    :style="{
-      backgroundImage: `url(${WaveBackground})`,
-      backgroundPosition: 'bottom',
-      backgroundSize: '100% auto',
-      height: '900px',
-    }"
-  >
-    <div class="px-4 md:px-32 flex flex-col mt-20">
+  <div class="relative pt-40 2xl:pt-80">
+    <!-- Absolute background -->
+    <div class="absolute inset-0 z-0">
+      <img
+        :src="WaveBackground"
+        alt="Wave Background"
+        class="w-full h-full object-cover object-bottom"
+      />
+    </div>
+
+    <!-- Content with relative positioning -->
+    <div class="relative z-10 px-4 md:px-32 flex flex-col mt-20 pb-20">
       <div class="text-3xl font-extrabold text-custom-blue-12 neuron mb-8">
         <h1>TOP FREE SLOT GAMES ONLINE</h1>
       </div>
@@ -522,7 +522,7 @@ onBeforeUnmount(() => {
               :style="{ width: `${100 / visibleSlides}%` }"
             >
               <div class="overflow-hidden h-full flex flex-col">
-                <img :src="game.image" :alt="game.title" class="w-full h-96" />
+                <img :src="game.image" :alt="game.title" class="w-full h-full" />
               </div>
             </div>
           </div>
@@ -630,87 +630,87 @@ onBeforeUnmount(() => {
 
     <!-- Bottom Decorative Image -->
     <div>
-      <img :src="LookingForCoinsTop" class="w-full relative z-0" />
+      <img :src="LookingForCoinsTop" class="w-full z-40" />
     </div>
   </div>
 
-  <div
-    v-if="!isMobileView"
-    class="-mt-80 w-full h-full bg-no-repeat pb-[100px] bg-contain z-20 relative"
-    :style="{ backgroundImage: `url(${ZeusBackground})`, backgroundSize: '100% auto' }"
-  >
-    <div class="max-w-[500px] mx-auto px-4 pt-[200px] backdrop-brightness-100">
-      <h1 class="text-[36px] md:text-[44px] font-bold text-center mb-8 text-[#00BBFF]">
-        EXTRA BONUS FAQ
-      </h1>
+  <div v-if="!isMobileView" class="relative 2xl:pt-[200px] pb-[100px] z-20">
+    <!-- Absolute background -->
+    <div class="-mt-80 absolute inset-0 z-0">
+      <img :src="ZeusBackground" alt="Zeus Background" class="w-full h-full object-cover" />
+    </div>
 
-      <div class="space-y-4">
-        <div
-          v-for="(faqItem, index) in faq"
-          :key="index"
-          class="overflow-hidden transition-all duration-200"
-        >
-          <!-- Question -->
+    <!-- Content with relative positioning -->
+    <div class="relative z-10">
+      <div class="max-w-[500px] mx-auto px-4 pt-80 backdrop-brightness-100">
+        <h1 class="text-[36px] md:text-[44px] font-bold text-center mb-8 text-[#00BBFF]">
+          EXTRA BONUS FAQ
+        </h1>
+
+        <div class="space-y-4">
           <div
-            class="flex justify-between items-center cursor-pointer hover:bg-gray-200 pb-2 transition-colors duration-200"
-            :class="{ 'border-b border-[#00BBFF]': activeIndex !== index }"
-            @click="toggleAnswer(index)"
+            v-for="(faqItem, index) in faq"
+            :key="index"
+            class="overflow-hidden transition-all duration-200"
           >
-            <div class="flex items-center gap-6 md:gap-8">
-              <img :src="StarIcon" alt="Star Icon" />
-              <h3 class="font-semibold text-base md:text-lg text-[#00BBFF]">
-                {{ faqItem.question }}
-              </h3>
-            </div>
-            <svg
-              class="w-5 h-5 transform transition-transform duration-200 text-[#00BBFF]"
-              :class="{ 'rotate-180': activeIndex === index }"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+            <!-- Question -->
+            <div
+              class="flex justify-between items-center cursor-pointer hover:bg-gray-200 pb-2 transition-colors duration-200"
+              :class="{ 'border-b border-[#00BBFF]': activeIndex !== index }"
+              @click="toggleAnswer(index)"
             >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M19 9l-7 7-7-7"
-              />
-            </svg>
-          </div>
+              <div class="flex items-center gap-6 md:gap-8">
+                <img :src="StarIcon" alt="Star Icon" />
+                <h3 class="font-semibold text-base md:text-lg text-[#00BBFF]">
+                  {{ faqItem.question }}
+                </h3>
+              </div>
+              <svg
+                class="w-5 h-5 transform transition-transform duration-200 text-[#00BBFF]"
+                :class="{ 'rotate-180': activeIndex === index }"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </div>
 
-          <!-- Answer -->
-          <div
-            class="transition-all duration-200 ease-in-out overflow-hidden bg-white"
-            :class="activeIndex === index ? 'max-h-screen border-b border-[#00BBFF]' : 'max-h-0'"
-          >
-            <div class="bg-white p-4 ml-5 md:ml-20 mr-5 md:mr-10">
-              <p class="text-gray-700">{{ faqItem.answer }}</p>
+            <!-- Answer -->
+            <div
+              class="transition-all duration-200 ease-in-out overflow-hidden"
+              :class="activeIndex === index ? 'max-h-screen border-b border-[#00BBFF]' : 'max-h-0'"
+            >
+              <div class="p-4 ml-5 md:ml-20 mr-5 md:mr-10">
+                <p class="text-gray-700">{{ faqItem.answer }}</p>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="mt-20">
-      <div class="flex flex-col md:flex-row items-center">
-        <!-- Image container - made slightly smaller -->
-        <div class="w-full md:w-1/2">
-          <!-- <img
-          :src="LucyJackpotBackground"
-          alt="Lucy Jackpot Background"
-          class="w-full max-w-[500px] mx-auto object-contain"
-        /> -->
-        </div>
 
-        <!-- Text content -->
-        <div class="w-full mt-48 pl-20 md:w-1/2 text-center md:text-left p-6">
-          <p class="text -lg font-medium mb-2 text-[#00BBFF]">ARE YOU READY</p>
-          <h2 class="text-3xl md:text-4xl font-bold mb-6 text-[#00BBFF]">FOR FREE SLOTS?</h2>
-          <!-- <button
-          class="px-8 py-3 bg-yellow-500 hover:bg-yellow-600 text-black font-bold rounded-lg transition-colors"
-        >
-          PLAY NOW
-        </button> -->
-          <img :src="PlayNowButton" alt="logo" class="h-20" />
+      <div class="mt-20">
+        <div class="flex flex-col md:flex-row items-center">
+          <!-- Image container - made slightly smaller -->
+          <div class="w-full md:w-1/2">
+            <!-- <img
+            :src="LucyJackpotBackground"
+            alt="Lucy Jackpot Background"
+            class="w-full max-w-[500px] mx-auto object-contain"
+          /> -->
+          </div>
+
+          <!-- Text content -->
+          <div class="w-full mt-48 pl-20 md:w-1/2 text-center md:text-left p-6">
+            <p class="text -lg font-medium mb-2 text-[#00BBFF]">ARE YOU READY</p>
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-[#00BBFF]">FOR FREE SLOTS?</h2>
+            <img :src="PlayNowButton" alt="logo" class="h-20" />
+          </div>
         </div>
       </div>
     </div>
