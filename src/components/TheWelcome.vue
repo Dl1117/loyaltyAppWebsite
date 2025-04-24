@@ -32,9 +32,15 @@ import {
   LookingForCoinsBottom,
   LookingForCoinsTop,
   StarIcon,
+  WaveBackground,
 } from '@/assets/icons'
-import { ref } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import PlayNowButton from '@/assets/icons/playNowButton/PlayNowButton.png'
+import CloverLady from '@/assets/homeBackground/SlotGameCarousel/CloverLady.png'
+import SugarRush from '@/assets/homeBackground/SlotGameCarousel/SugarRush.png'
+import IceScape from '@/assets/homeBackground/SlotGameCarousel/IceScape.png'
+import LuckyPiggy from '@/assets/homeBackground/SlotGameCarousel/LuckyPiggy.png'
+
 const showMore = ref(false)
 
 const activeIndex = ref(null)
@@ -163,6 +169,62 @@ const faq = [
       'As under-whelming as it may sound, Slotomania’s free online slot games use a random number generator – so everything just boils down to luck! Spinning slots is a game of possibilities. However, having a broad knowledge about different free casino slot games and their rules will certainly help you understand your chances better. Just hit the SPIN button and find out the answer to the burning question: What Will Today Spin?',
   },
 ]
+
+const currentSlide = ref(0)
+const windowWidth = ref(window.innerWidth)
+
+const slotGames = [
+  {
+    title: 'Dolphin Reef',
+    image: CloverLady,
+    description:
+      "Dolphin Reef is a slot game by Next Gen Gaming, based in a reef populated with familiar sea creatures. Combining enough of these can result in big wins, and there's a lot of fun to be had in the process.",
+  },
+  {
+    title: 'Sugar Rush',
+    image: SugarRush,
+    description:
+      'Sugar Rush is an online slot developed by Pragmatic Play. It is a high-volatility RTP of 96.5%. It is played on a 7×7 grid with 20 paylines, and it has cascading wins pays mechanisms.',
+  },
+  {
+    title: 'Buffalo King',
+    image: IceScape,
+    description:
+      'Buffalo King is a 6-reel, 4096 ways to win slot game with a Wild West theme. Trigger free spins with 3+ scatter symbols and enjoy multipliers up to 5x on wild wins.',
+  },
+  {
+    title: 'Wolf Gold',
+    image: LuckyPiggy,
+    description:
+      'Wolf Gold takes you to the American wilderness with a 5×3 layout and 25 paylines. Features include stacked wilds, respins, and a chance to win one of three jackpots.',
+  },
+]
+
+const visibleSlides = computed(() => {
+  if (windowWidth.value < 640) return 1
+  else return 2
+})
+
+const nextSlide = () => {
+  if (currentSlide.value < slotGames.length - visibleSlides.value) {
+    currentSlide.value++
+  }
+}
+
+const prevSlide = () => {
+  if (currentSlide.value > 0) {
+    currentSlide.value--
+  }
+}
+
+onMounted(() => {
+  window.addEventListener('resize', () => {
+    windowWidth.value = window.innerWidth
+    if (currentSlide.value > slotGames.length - visibleSlides.value) {
+      currentSlide.value = Math.max(0, slotGames.length - visibleSlides.value)
+    }
+  })
+})
 </script>
 
 <template>
@@ -184,7 +246,7 @@ const faq = [
       <div class="text-2xl md:text-4xl font-bold drop-shadow-lg">PLAY SLOTOMANIA</div>
       <div class="text-lg md:text-2xl mt-2 drop-shadow-md">THE #1 FREE SLOT GAME</div>
       <!-- <button
-        class="mt-10 px-8 py-4 text-2xl font-bold rounded-full bg-yellow-400 text-black hover:bg-yellow-500 transition-all border-2 border-black shadow-lg"
+        class="mt-10 px-8 py-4 text-2xl font-bold rounded-full bg-yellow-400 text-black hover:bg-yellow-500 transition-all  shadow-lg"
       >
         PLAY NOW
       </button> -->
@@ -288,11 +350,13 @@ const faq = [
   </div>
 
   <div
-    class="relative z-0 bg-no-repeat -mt-1 pb-60"
+    class="relative z-0 bg-no-repeat -mt-1 pb-80"
     :style="{
       backgroundImage: `url(${FantasyScene})`,
-      // backgroundPosition: 'center center',
-      backgroundSize: '100% auto',
+      backgroundPosition: '10% 20%',
+      backgroundSize: 'cover',
+
+      // backgroundSize: '100% 100%',
     }"
   >
     <!-- SLOTOMANIA GOING SOCIAL -->
@@ -368,14 +432,26 @@ const faq = [
   </div>
 
   <!-- Slotomania Players Reviews with custom background that overwrites FantasyScene -->
-  <div
-    class="mt-96 relative z-0 border-2 border-black"
-    :style="{
-      backgroundImage: `url(${PlayersReviews})`,
-      backgroundSize: '100% auto',
-    }"
-  >
-    <div class="px-4 md:px-40 pb-96 relative z-10">
+  <div class="relative z-0 pb-28">
+    <!-- Background image with negative z-index -->
+    <div class="absolute inset-0 -z-10">
+      <div
+        class="w-full h-[85%] bg-gradient-to-b from-custom-blue-12 to-custom-blue-13 backdrop-blur-3xl"
+      ></div>
+    </div>
+
+    <!-- Background image with negative z-index -->
+    <div class="absolute inset-0 z-20">
+      <div
+        class="w-full h-full bg-no-repeat"
+        :style="{
+          backgroundImage: `url(${PlayersReviews})`,
+          backgroundSize: 'fit',
+        }"
+      ></div>
+    </div>
+
+    <div class="px-4 md:px-40 pb-80 z-10 pt-8">
       <h2 class="text-2xl font-bold text-center mb-8">SLOTOMANIA PLAYER'S REVIEWS</h2>
       <ul
         class="flex gap-6 overflow-x-auto pb-6 snap-x snap-mandatory scroll-smooth whitespace-nowrap"
@@ -399,36 +475,101 @@ const faq = [
     </div>
   </div>
 
-  <div class="mt-10">
-    <div>
-      <div class="text-2xl font-bold text-center mb-8">
+  <div
+    class="z-0 w-full bg-cover bg-no-repeat"
+    :style="{
+      backgroundImage: `url(${WaveBackground})`,
+      backgroundPosition: 'bottom',
+      backgroundSize: '100% auto',
+      height: '900px',
+    }"
+  >
+    <div class="px-4 md:px-32 flex flex-col mt-20">
+      <div class="text-3xl font-extrabold text-custom-blue-12 neuron mb-8">
         <h1>TOP FREE SLOT GAMES ONLINE</h1>
-        <button>See all games</button>
       </div>
 
-      <div>
-        <ul class="flex flex-wrap justify-between gap-6">
-          <li
-            v-for="(topFreeSlotGame, index) in topFreeSlotGamesOnline"
-            :key="index"
-            class="flex-1 min-w-[250px] flex flex-col items-center p-4 rounded-lg"
+      <!-- Carousel Container -->
+      <div class="relative mt-20">
+        <!-- Carousel Slides -->
+        <div class="overflow-hidden">
+          <div
+            class="flex transition-transform duration-500 ease-in-out"
+            :style="{ transform: `translateX(-${(currentSlide * 100) / visibleSlides}%)` }"
           >
-            <img
-              :src="topFreeSlotGame.image"
-              alt="Game image"
-              class="w-50 h-80 -mb-40 object-contain z-50"
-            />
-            <div class="bg-gray-100 pt-10">
-              <h3 class="font-semibold text-lg mb-2">{{ topFreeSlotGame.title }}</h3>
-              <p class="text-sm text-gray-700">{{ topFreeSlotGame.context }}</p>
+            <div
+              v-for="(game, index) in slotGames"
+              :key="index"
+              class="flex-shrink-0 px-2"
+              :style="{ width: `${100 / visibleSlides}%` }"
+            >
+              <div class="overflow-hidden h-full flex flex-col">
+                <img :src="game.image" :alt="game.title" class="w-full h-96" />
+              </div>
             </div>
-          </li>
-        </ul>
+          </div>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="flex items-center justify-center mt-8 gap-2">
+          <button
+            @click="prevSlide"
+            class="bg-custom-blue-12 rounded-full p-1"
+            :disabled="currentSlide === 0"
+            :class="{ 'opacity-50 cursor-not-allowed': currentSlide === 0 }"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 text-white"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M15 19l-7-7 7-7"
+              />
+            </svg>
+          </button>
+
+          <button
+            @click="nextSlide"
+            class="bg-custom-blue-12 rounded-full p-1"
+            :disabled="currentSlide >= slotGames.length - visibleSlides"
+            :class="{
+              'opacity-50 cursor-not-allowed': currentSlide >= slotGames.length - visibleSlides,
+            }"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 text-white"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
+          </button>
+
+          <div class="flex-grow max-w-2xl bg-gray-200 rounded-full h-2.5">
+            <div
+              class="bg-custom-blue-12 h-2.5 rounded-full transition-all duration-500 ease-in-out"
+              :style="{ width: `${(currentSlide / (slotGames.length - visibleSlides)) * 100}%` }"
+            ></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="mt-16 relative mb-16">
+  <div class="-mt-24 relative mb-16">
     <!-- Top Decorative Image -->
     <div>
       <img :src="LookingForCoinsBottom" class="w-full" />
@@ -558,7 +699,7 @@ const faq = [
         <h1
           class="text-[20px] md:text-[20px] font-bold text-[#00BBFF] mb-4 whitespace-nowrap inline-block"
         >
-          Slotomania, the world’s #1 free slots game, was developed in 2011 by Playtika®
+          Slotomania, the world's #1 free slots game, was developed in 2011 by Playtika®
         </h1>
       </div>
 
@@ -578,7 +719,7 @@ const faq = [
             Google Play, Apple iPhone or iPad App Store, or Facebook Gaming).
             <br />
             Get 1 million free Coins as a Welcome Bonus, just for downloading the game! Although it
-            may replicate Vegas-style slot machines, there are no cash prizes. Slotomania’s focus is
+            may replicate Vegas-style slot machines, there are no cash prizes. Slotomania's focus is
             on exhilarating gameplay and fostering a happy global community.
             <br />
             Slotomania is a pioneer in the slot industry – with over 11 years of refining the game.

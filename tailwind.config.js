@@ -154,6 +154,8 @@ export default {
         'custom-blue-9': '#116E8E',
         'custom-blue-10': '#006DBA',
         'custom-blue-11': '#1782E8',
+        'custom-blue-12': '#00BBFF',
+        'custom-blue-13': '#0077FF',
         'custom-grey-1': '#F1F1F1',
         'custom-grey-2': '#A0A0A0',
         'custom-grey-3': '#CDCDCD',
