@@ -2,16 +2,12 @@
 import horseCartoonVideo from '@/assets/video/horse.mp4'
 
 // Import your images directly
-import CardImg1 from '@/assets/fourLittleCardsMascot/card-img-1.png'
-import CardImg2 from '@/assets/fourLittleCardsMascot/card-img-2.png'
-import CardImg3 from '@/assets/fourLittleCardsMascot/card-img-3.png'
-import CardImg4 from '@/assets/fourLittleCardsMascot/card-img-4.png'
+
 import Karen from '@/assets/people/karen.jpg'
 import Magen from '@/assets/people/magen.jpg'
 import Noah from '@/assets/people/noah.jpg'
 import Tiger from '@/assets/topFreeSlotGamesOnline/tiger.png'
 import Train from '@/assets/topFreeSlotGamesOnline/train.png'
-import BackgroundMouseGold from '@/assets/homeBackground/background_desktop.jpg'
 import LucyJackpotBackground from '@/assets/homeBackground/lucy_footer.png'
 import {
   RouletteTable,
@@ -31,6 +27,10 @@ import {
   RabbitSkateBoard,
   PokerCow,
   Wukong,
+  Masjid,
+  LookingForCoins,
+  LookingForCoinsBottom,
+  LookingForCoinsTop,
 } from '@/assets/icons'
 import { ref } from 'vue'
 import PlayNowButton from '@/assets/icons/playNowButton/PlayNowButton.png'
@@ -207,51 +207,60 @@ const faq = [
     </div>
 
     <!-- Bottom (mobile) / Right (desktop): Text -->
-    <div class="w-full md:flex-1 text-black text-sm leading-relaxed md:px-6">
-      <h1 class="text-2xl md:text-3xl font-bold mb-4">GET EXTRA BONUS NOW !</h1>
+    <div class="pl-5 pr-5 w-full md:flex-1 text-black text-sm leading-relaxed md:px-6">
+      <h1 class="text-2xl md:text-3xl font-bold mb-4 text-[#00BBFF]">GET EXTRA BONUS NOW !</h1>
+      <br />
       <p>
-        Slotomania, the world's #1 free slots game, was developed in 2011 by Playtika®. Slotomania
-        offers 170+ free online slot games, various fun features, mini-games, free bonuses, and more
-        online or free-to-download apps. Join millions of players and enjoy a fantastic experience
-        on the web or any device; from PCs to tablets and cell phones (on Google Play, Apple iPhone
-        or iPad App Store, or Facebook Gaming). Get 1 million free Coins as a Welcome Bonus, just
-        for downloading the game! Although it may replicate Vegas-style slot machines, there are no
-        cash prizes. Slotomania's focus is on exhilarating gameplay and fostering a happy global
-        community. Slotomania is a pioneer in the slot industry - with over 11 years of refining the
-        game, it is a pioneer in the slot game industry. Many of its competitors have adopted
-        similar features and techniques to Slotomania, such as collectibles and group play.
+        <strong
+          >Slotomania, the world's #1 free slots game, was developed in 2011 by Playtika®.</strong
+        ><br /><br />
+        Slotomania offers 170+ free online slot games, various fun features, mini-games, free
+        bonuses, and more online or free-to-download apps. Join millions of players and enjoy a
+        fantastic experience on the web or any device; from PCs to tablets and cell phones (on
+        Google Play, Apple iPhone or iPad App Store, or Facebook Gaming). <br /><br />Get 1 million
+        free Coins as a Welcome Bonus, just for downloading the game! Although it may replicate
+        Vegas-style slot machines, there are no cash prizes. Slotomania's focus is on exhilarating
+        gameplay and fostering a happy global community. <br /><br />Slotomania is a pioneer in the
+        slot industry - with over 11 years of refining the game, it is a pioneer in the slot game
+        industry. Many of its competitors have adopted similar features and techniques to
+        Slotomania, such as collectibles and group play.
       </p>
     </div>
   </div>
 
-  <div class="mt-20">
+  <div class="mt-20 bg-gradient-to-b from-white via-white to-[#f1fafd]">
     <!-- WHY SLOTOMANIA Title centered at the top of all the images -->
     <div class="mb-8">
-      <h2 class="text-2xl md:text-3xl font-bold text-center">WHY EXTRA BONUS?</h2>
+      <h2 class="text-2xl md:text-3xl font-bold text-center text-[#00BBFF]">WHY EXTRA BONUS?</h2>
     </div>
 
     <!-- Grid layout for mobile, flex row for desktop -->
-    <ul class="grid grid-cols-2 gap-4 md:flex md:flex-row md:justify-center md:gap-10 px-4 md:px-0">
+    <ul
+      class="grid grid-cols-2 gap-x-4 gap-y-6 md:gap-y-4 px-4 md:px-0 md:flex md:flex-row md:justify-center md:gap-10"
+    >
       <li
         v-for="(image, index) in imagesSentences"
         :key="index"
-        class="col-span-2 md:col-span-1"
-        :class="{
-          'col-start-1 md:col-start-auto':
-            imagesSentences.length % 2 === 1 && index === imagesSentences.length - 1,
-        }"
+        :class="[
+          'flex flex-col items-center h-full -mb-5 md:col-span-1',
+          imagesSentences.length % 2 === 1 && index === imagesSentences.length - 1
+            ? 'col-span-2 justify-self-center'
+            : 'col-span-1',
+        ]"
       >
-        <div class="flex flex-col items-center h-full">
+        <div class="flex flex-col items-center h-full mb-10 md:-mb-5">
           <img
             :src="image.image"
             alt="Slotomania Image"
             class="w-30 h-20 object-contain mb-4 md:-mb-8 mx-auto z-10"
           />
 
-          <div class="bg-gray-100 w-full md:pt-14 pt-6 pb-6 text-center rounded-lg px-4">
+          <div class="bg-white md:pt-14 pt-6 pb-6 text-center rounded-lg px-2">
             <div>
-              <h3 class="font-semibold">{{ image.title }}</h3>
-              <h4 class="text-sm mt-2">{{ image.sentence }}</h4>
+              <h3 class="font-semibold text-[#0068A9] whitespace-nowrap">{{ image.title }}</h3>
+              <h3 class="text-sm text-[#00BBFF] whitespace-nowrap">
+                {{ image.sentence }}
+              </h3>
             </div>
           </div>
         </div>
@@ -260,9 +269,15 @@ const faq = [
   </div>
 
   <!-- Halloween Background Section -->
-  <div class="mt-20 w-full z-20">
-    <div>
-      <img :src="HalloweenBackground" alt="Halloween Background" class="w-full z-20" />
+  <div class="w-full relative">
+    <div class="absolute inset-0 -z-10">
+      <div
+        class="w-full h-full bg-cover bg-center opacity-30"
+        :style="`background-image: url(${Masjid})`"
+      ></div>
+    </div>
+    <div class="relative z-0">
+      <img :src="HalloweenBackground" alt="Halloween Background" class="w-full" />
     </div>
 
     <!-- Blue Cloud Transition -->
@@ -413,13 +428,16 @@ const faq = [
   </div>
 
   <div class="mt-20 relative mb-20">
+    <div>
+      <img :src="LookingForCoinsBottom" />
+    </div>
     <!-- Container with image background and text overlay -->
     <div class="relative flex flex-col md:flex-row items-center">
       <!-- Background image -->
       <img
-        :src="BackgroundMouseGold"
-        alt="Background Mouse Gold"
-        class="w-full h-[600px] md:h-[600px] object-cover"
+        :src="LookingForCoins"
+        alt="Looking For Coins"
+        class="w-full h-[700px] md:h-[900px] object-cover"
       />
 
       <!-- Text overlay -->
@@ -444,6 +462,9 @@ const faq = [
           </div>
         </div>
       </div>
+    </div>
+    <div>
+      <img :src="LookingForCoinsTop" />
     </div>
   </div>
 
