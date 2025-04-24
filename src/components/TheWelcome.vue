@@ -33,8 +33,10 @@ import {
   LookingForCoinsTop,
   StarIcon,
   WaveBackground,
+  ZeusBackground,
+  MobileZeusBackground,
 } from '@/assets/icons'
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import PlayNowButton from '@/assets/icons/playNowButton/PlayNowButton.png'
 import CloverLady from '@/assets/homeBackground/SlotGameCarousel/CloverLady.png'
 import SugarRush from '@/assets/homeBackground/SlotGameCarousel/SugarRush.png'
@@ -224,6 +226,22 @@ onMounted(() => {
       currentSlide.value = Math.max(0, slotGames.length - visibleSlides.value)
     }
   })
+})
+const isMobileView = ref(false)
+
+// Function to check if it's a mobile view
+const checkMobileView = () => {
+  isMobileView.value = window.innerWidth <= 768
+}
+
+// Watch the window resize event to dynamically adjust the value
+onMounted(() => {
+  checkMobileView()
+  window.addEventListener('resize', checkMobileView)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', checkMobileView)
 })
 </script>
 
@@ -612,99 +630,177 @@ onMounted(() => {
 
     <!-- Bottom Decorative Image -->
     <div>
-      <img :src="LookingForCoinsTop" class="w-full" />
+      <img :src="LookingForCoinsTop" class="w-full relative z-0" />
     </div>
   </div>
 
-  <div class="mt-20 max-w-4xl mx-auto px-4 mb-20">
-    <h1 class="text-[50px] font-bold text-center mb-8 text-[#00BBFF]">EXTRA BONUS FAQ</h1>
+  <div
+    v-if="!isMobileView"
+    class="-mt-80 w-full h-full bg-no-repeat pb-[100px] bg-contain z-20 relative"
+    :style="{ backgroundImage: `url(${ZeusBackground})`, backgroundSize: '100% auto' }"
+  >
+    <div class="max-w-[500px] mx-auto px-4 pt-[200px] backdrop-brightness-100">
+      <h1 class="text-[36px] md:text-[44px] font-bold text-center mb-8 text-[#00BBFF]">
+        EXTRA BONUS FAQ
+      </h1>
 
-    <div class="space-y-4">
-      <div
-        v-for="(faqItem, index) in faq"
-        :key="index"
-        class="overflow-hidden transition-all duration-200"
-      >
-        <!-- FAQ Question with toggle -->
+      <div class="space-y-4">
         <div
-          class="flex justify-between items-center cursor-pointer hover:bg-gray-200 p-4 transition-colors duration-200"
-          :class="{
-            'border-b border-[#00BBFF]': activeIndex !== index,
-          }"
-          @click="toggleAnswer(index)"
+          v-for="(faqItem, index) in faq"
+          :key="index"
+          class="overflow-hidden transition-all duration-200"
         >
-          <div class="flex items-center gap-8">
-            <img :src="StarIcon" alt="Star Icon" />
-            <h3 class="font-semibold text-lg text-[#00BBFF]">{{ faqItem.question }}</h3>
+          <!-- Question -->
+          <div
+            class="flex justify-between items-center cursor-pointer hover:bg-gray-200 pb-2 transition-colors duration-200"
+            :class="{ 'border-b border-[#00BBFF]': activeIndex !== index }"
+            @click="toggleAnswer(index)"
+          >
+            <div class="flex items-center gap-6 md:gap-8">
+              <img :src="StarIcon" alt="Star Icon" />
+              <h3 class="font-semibold text-base md:text-lg text-[#00BBFF]">
+                {{ faqItem.question }}
+              </h3>
+            </div>
+            <svg
+              class="w-5 h-5 transform transition-transform duration-200 text-[#00BBFF]"
+              :class="{ 'rotate-180': activeIndex === index }"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
           </div>
 
-          <svg
-            class="w-5 h-5 transform transition-transform duration-200 text-[#00BBFF]"
-            :class="{ 'rotate-180': activeIndex === index }"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
+          <!-- Answer -->
+          <div
+            class="transition-all duration-200 ease-in-out overflow-hidden bg-white"
+            :class="activeIndex === index ? 'max-h-screen border-b border-[#00BBFF]' : 'max-h-0'"
           >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M19 9l-7 7-7-7"
-            />
-          </svg>
-        </div>
-
-        <!-- Answer section with only bottom border when open -->
-        <div
-          class="transition-all duration-200 ease-in-out overflow-hidden"
-          :class="activeIndex === index ? 'max-h-screen border-b border-[#00BBFF]' : 'max-h-0'"
-        >
-          <div class="bg-white p-4 ml-20 mr-10">
-            <p class="text-gray-700">{{ faqItem.answer }}</p>
+            <div class="bg-white p-4 ml-5 md:ml-20 mr-5 md:mr-10">
+              <p class="text-gray-700">{{ faqItem.answer }}</p>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-
-  <div class="mt-20">
-    <div class="flex flex-col md:flex-row items-center">
-      <!-- Image container - made slightly smaller -->
-      <div class="w-full md:w-1/2">
-        <img
+    <div class="mt-20">
+      <div class="flex flex-col md:flex-row items-center">
+        <!-- Image container - made slightly smaller -->
+        <div class="w-full md:w-1/2">
+          <!-- <img
           :src="LucyJackpotBackground"
           alt="Lucy Jackpot Background"
           class="w-full max-w-[500px] mx-auto object-contain"
-        />
-      </div>
+        /> -->
+        </div>
 
-      <!-- Text content -->
-      <div class="w-full md:w-1/2 text-center md:text-left p-6">
-        <p class="text-lg font-medium mb-2 text-[#00BBFF]">ARE YOU READY</p>
-        <h2 class="text-3xl md:text-4xl font-bold mb-6 text-[#00BBFF]">FOR FREE SLOTS?</h2>
-        <!-- <button
+        <!-- Text content -->
+        <div class="w-full mt-48 pl-20 md:w-1/2 text-center md:text-left p-6">
+          <p class="text -lg font-medium mb-2 text-[#00BBFF]">ARE YOU READY</p>
+          <h2 class="text-3xl md:text-4xl font-bold mb-6 text-[#00BBFF]">FOR FREE SLOTS?</h2>
+          <!-- <button
           class="px-8 py-3 bg-yellow-500 hover:bg-yellow-600 text-black font-bold rounded-lg transition-colors"
         >
           PLAY NOW
         </button> -->
-        <img :src="PlayNowButton" alt="logo" class="h-20" />
+          <img :src="PlayNowButton" alt="logo" class="h-20" />
+        </div>
       </div>
     </div>
   </div>
 
+  <div v-if="isMobileView" class="-mt-20">
+    <div class="max-w-[500px] mx-auto px-4 pt-[10px] backdrop-brightness-100">
+      <h1 class="text-[25px] font-bold text-center mb-8 text-[#00BBFF]">EXTRA BONUS FAQ</h1>
+
+      <div class="space-y-4">
+        <div
+          v-for="(faqItem, index) in faq"
+          :key="index"
+          class="overflow-hidden transition-all duration-200"
+        >
+          <!-- Question -->
+          <div
+            class="flex justify-between items-center cursor-pointer hover:bg-gray-200 pb-2 transition-colors duration-200"
+            :class="{ 'border-b border-[#00BBFF]': activeIndex !== index }"
+            @click="toggleAnswer(index)"
+          >
+            <div class="flex items-center gap-6 md:gap-8">
+              <img :src="StarIcon" alt="Star Icon" />
+              <h3 class="font-semibold text-base md:text-lg text-[#00BBFF]">
+                {{ faqItem.question }}
+              </h3>
+            </div>
+            <svg
+              class="w-5 h-5 transform transition-transform duration-200 text-[#00BBFF]"
+              :class="{ 'rotate-180': activeIndex === index }"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+          </div>
+
+          <!-- Answer -->
+          <div
+            class="transition-all duration-200 ease-in-out overflow-hidden bg-white"
+            :class="activeIndex === index ? 'max-h-screen border-b border-[#00BBFF]' : 'max-h-0'"
+          >
+            <div class="bg-white p-4 ml-5 md:ml-20 mr-5 md:mr-10">
+              <p class="text-gray-700">{{ faqItem.answer }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mt-5">
+      <div class="relative w-full h-[600px] md:h-[500px] overflow-hidden">
+        <!-- Background image container - ensures full image visibility -->
+        <div class="absolute inset-0">
+          <img
+            :src="MobileZeusBackground"
+            alt="Mobile Zeus Background"
+            class="w-full h-full object-cover object-left md:object-[65%_center]"
+          />
+        </div>
+
+        <!-- Text content overlay - pushed to right -->
+        <div class="absolute inset-0 flex items-center justify-end pr-4 md:pr-20 mb-44">
+          <div class="text-right max-w-[300px] md:max-w-none">
+            <p class="text-lg font-medium mb-2 text-[#00BBFF]">ARE YOU READY</p>
+            <h2 class="text-xl md:text-4xl font-bold mb-6 text-[#00BBFF] whitespace-nowrap">
+              FOR FREE SLOTS?
+            </h2>
+            <img :src="PlayNowButton" alt="Play Now" class="w-25 h-10 inline-block" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="mt-20 flex justify-center px-4 mb-5">
     <div class="text-center max-w-2xl w-full">
       <!-- Title -->
-      <div class="w-full overflow-x-auto md:overflow-visible">
-        <h1
-          class="text-[20px] md:text-[20px] font-bold text-[#00BBFF] mb-4 whitespace-nowrap inline-block"
-        >
-          Slotomania, the world's #1 free slots game, was developed in 2011 by Playtika®
+      <div class="w-full md:overflow-visible">
+        <h1 class="text-[20px] md:text-[20px] font-bold text-[#00BBFF] mb-4 inline-block">
+          Slotomania, the world’s #1 free slots game, was developed in 2011 by Playtika®
         </h1>
       </div>
 
       <!-- Collapsible Content Container -->
-      <div class="relative text-base text-gray-800 leading-relaxed transition-all duration-300">
+      <div class="relative text-base text-gray-800 leading-relaxed transition-all duration-300 m">
         <!-- Content -->
         <div
           :class="[

@@ -45,3 +45,5 @@ export { default as LookingForCoinsTop } from '../homeBackground/lookingForCoins
 export { default as LookingForCoinsBottom } from '../homeBackground/lookingForCoins/lookingForCoinsBottom.svg'
 export { default as StarIcon } from './starIcon.svg'
 export { default as WaveBackground } from '../homeBackground/WaveBackground.svg'
+export { default as ZeusBackground } from '../homeBackground/zeusBackground.svg'
+export { default as MobileZeusBackground } from '../homeBackground/mobileZeusBackground.svg'
