@@ -31,12 +31,13 @@ import {
   LookingForCoins,
   LookingForCoinsBottom,
   LookingForCoinsTop,
+  StarIcon,
 } from '@/assets/icons'
 import { ref } from 'vue'
 import PlayNowButton from '@/assets/icons/playNowButton/PlayNowButton.png'
+const showMore = ref(false)
 
 const activeIndex = ref(null)
-
 const toggleAnswer = (index) => {
   activeIndex.value = activeIndex.value === index ? null : index
 }
@@ -427,65 +428,77 @@ const faq = [
     </div>
   </div>
 
-  <div class="mt-20 relative mb-20">
+  <div class="mt-16 relative mb-16">
+    <!-- Top Decorative Image -->
     <div>
-      <img :src="LookingForCoinsBottom" />
+      <img :src="LookingForCoinsBottom" class="w-full" />
     </div>
-    <!-- Container with image background and text overlay -->
+
+    <!-- Container with Background and Overlay -->
     <div class="relative flex flex-col md:flex-row items-center">
-      <!-- Background image -->
+      <!-- Responsive Background Image -->
       <img
         :src="LookingForCoins"
         alt="Looking For Coins"
-        class="w-full h-[700px] md:h-[900px] object-cover"
+        class="w-full h-[400px] sm:h-[500px] md:h-[900px] lg:h-[900px] object-cover"
       />
 
-      <!-- Text overlay -->
-      <div class="absolute inset-0 flex items-center justify-center md:justify-start">
-        <div class="container mx-auto px-4 md:px-6 lg:px-8">
-          <div
-            class="max-w-md bg-transparent text-white p-6 md:p-8 rounded-lg text-center md:text-left"
+      <!-- Overlayed Content -->
+      <div class="absolute inset-0 flex items-center justify-center md:justify-start px-4 md:px-10">
+        <div
+          class="max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl text-white text-center md:text-left p-4 md:p-6 rounded-xl"
+        >
+          <h2 class="text-xl sm:text-2xl md:text-3xl font-bold mb-3 whitespace-nowrap">
+            LOOKING FOR FREE COINS?
+          </h2>
+          <br />
+          <p class="mb-6">
+            You're in luck! We provide you with over 15 amazing ways to get them... EVERY DAY!
+            <br class="hidden md:block" />
+            Find links on our social media channels and posts, notifications, emails, or even grab
+            your daily in-game Store Bonus. Collecting epic free Coins and freebies is super easy in
+            Slotomania!
+          </p>
+          <br />
+          <button
+            class="hidden md:inline-flex px-5 py-2 bg-transparent hover:bg-yellow-600 text-white font-bold rounded-full border border-white transition-colors"
           >
-            <h2 class="text-2xl md:text-3xl font-bold mb-4">LOOKING FOR FREE COINS?</h2>
-            <p class="mb-6">
-              You're in luck! We provide you with over 15 amazing ways to get them... EVERY DAY!
-              <br class="hidden md:block" />
-              Find links on our social media channels and posts, notifications, emails, or even grab
-              your daily in-game Store Bonus. Collecting epic free Coins and freebies is super easy
-              in Slotomania!
-            </p>
-            <button
-              class="hidden md:inline-flex px-6 py-3 bg-yellow-500 hover:bg-yellow-600 text-black font-bold rounded-lg transition-colors"
-            >
-              COLLECT COINS
-            </button>
-          </div>
+            COLLECT COINS
+          </button>
         </div>
       </div>
     </div>
+
+    <!-- Bottom Decorative Image -->
     <div>
-      <img :src="LookingForCoinsTop" />
+      <img :src="LookingForCoinsTop" class="w-full" />
     </div>
   </div>
 
   <div class="mt-20 max-w-4xl mx-auto px-4 mb-20">
-    <h2 class="text-2xl font-bold text-center mb-8">FREE SLOTS FAQ</h2>
+    <h1 class="text-[50px] font-bold text-center mb-8 text-[#00BBFF]">EXTRA BONUS FAQ</h1>
 
     <div class="space-y-4">
       <div
         v-for="(faqItem, index) in faq"
         :key="index"
-        class="border border-gray-200 rounded-lg overflow-hidden transition-all duration-200"
-        :class="{ 'shadow-md': activeIndex === index }"
+        class="overflow-hidden transition-all duration-200"
       >
         <!-- FAQ Question with toggle -->
         <div
-          class="flex justify-between items-center cursor-pointer bg-gray-100 hover:bg-gray-200 p-4 transition-colors duration-200"
+          class="flex justify-between items-center cursor-pointer hover:bg-gray-200 p-4 transition-colors duration-200"
+          :class="{
+            'border-b border-[#00BBFF]': activeIndex !== index,
+          }"
           @click="toggleAnswer(index)"
         >
-          <h3 class="font-semibold text-lg">{{ faqItem.question }}</h3>
+          <div class="flex items-center gap-8">
+            <img :src="StarIcon" alt="Star Icon" />
+            <h3 class="font-semibold text-lg text-[#00BBFF]">{{ faqItem.question }}</h3>
+          </div>
+
           <svg
-            class="w-5 h-5 transform transition-transform duration-200"
+            class="w-5 h-5 transform transition-transform duration-200 text-[#00BBFF]"
             :class="{ 'rotate-180': activeIndex === index }"
             fill="none"
             stroke="currentColor"
@@ -500,22 +513,15 @@ const faq = [
           </svg>
         </div>
 
-        <!-- FAQ Answer - Using Tailwind's transition utilities -->
+        <!-- Answer section with only bottom border when open -->
         <div
           class="transition-all duration-200 ease-in-out overflow-hidden"
-          :class="activeIndex === index ? 'max-h-screen' : 'max-h-0'"
+          :class="activeIndex === index ? 'max-h-screen border-b border-[#00BBFF]' : 'max-h-0'"
         >
-          <div class="bg-white p-4 border-t border-gray-200">
+          <div class="bg-white p-4 ml-20 mr-10">
             <p class="text-gray-700">{{ faqItem.answer }}</p>
           </div>
         </div>
-      </div>
-      <div>
-        As under-whelming as it may sound, Slotomania’s free online slot games use a random number
-        generator – so everything just boils down to luck! Spinning slots is a game of
-        possibilities. However, having a broad knowledge about different free casino slot games and
-        their rules will certainly help you understand your chances better. Just hit the SPIN button
-        and find out the answer to the burning question: What Will Today Spin?
       </div>
     </div>
   </div>
@@ -533,13 +539,69 @@ const faq = [
 
       <!-- Text content -->
       <div class="w-full md:w-1/2 text-center md:text-left p-6">
-        <p class="text-lg font-medium mb-2">ARE YOU READY</p>
-        <h2 class="text-3xl md:text-4xl font-bold mb-6">FOR FREE SLOTS?</h2>
-        <button
+        <p class="text-lg font-medium mb-2 text-[#00BBFF]">ARE YOU READY</p>
+        <h2 class="text-3xl md:text-4xl font-bold mb-6 text-[#00BBFF]">FOR FREE SLOTS?</h2>
+        <!-- <button
           class="px-8 py-3 bg-yellow-500 hover:bg-yellow-600 text-black font-bold rounded-lg transition-colors"
         >
           PLAY NOW
-        </button>
+        </button> -->
+        <img :src="PlayNowButton" alt="logo" class="h-20" />
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-20 flex justify-center px-4 mb-5">
+    <div class="text-center max-w-2xl w-full">
+      <!-- Title -->
+      <div class="w-full overflow-x-auto md:overflow-visible">
+        <h1
+          class="text-[20px] md:text-[20px] font-bold text-[#00BBFF] mb-4 whitespace-nowrap inline-block"
+        >
+          Slotomania, the world’s #1 free slots game, was developed in 2011 by Playtika®
+        </h1>
+      </div>
+
+      <!-- Collapsible Content Container -->
+      <div class="relative text-base text-gray-800 leading-relaxed transition-all duration-300">
+        <!-- Content -->
+        <div
+          :class="[
+            'overflow-hidden transition-all duration-300',
+            showMore ? 'max-h-[9999px]' : 'max-h-[150px]',
+          ]"
+        >
+          <p class="max-w-prose mx-auto">
+            Slotomania offers 170+ free online slot games, various fun features, mini-games, free
+            bonuses, and more online or free-to-download apps. Join millions of players and enjoy a
+            fantastic experience on the web or any device; from PCs to tablets and cell phones (on
+            Google Play, Apple iPhone or iPad App Store, or Facebook Gaming).
+            <br />
+            Get 1 million free Coins as a Welcome Bonus, just for downloading the game! Although it
+            may replicate Vegas-style slot machines, there are no cash prizes. Slotomania’s focus is
+            on exhilarating gameplay and fostering a happy global community.
+            <br />
+            Slotomania is a pioneer in the slot industry – with over 11 years of refining the game.
+            Many of its competitors have adopted similar features and techniques to Slotomania, such
+            as collectibles and group play.
+          </p>
+
+          <!-- Fade-only overlay on content (not affecting button) -->
+          <div
+            v-if="!showMore"
+            class="absolute bottom-10 left-0 w-full h-20 bg-gradient-to-t from-white to-transparent pointer-events-none"
+          ></div>
+        </div>
+
+        <!-- See More Toggle -->
+        <div class="mt-4">
+          <button
+            class="text-[#00BBFF] font-semibold underline focus:outline-none"
+            @click="showMore = !showMore"
+          >
+            {{ showMore ? 'See Less' : 'See More' }}
+          </button>
+        </div>
       </div>
     </div>
   </div>
