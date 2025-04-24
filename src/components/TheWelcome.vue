@@ -287,10 +287,10 @@ const faq = [
   </div>
 
   <div
-    class="relative z-0 bg-no-repeat -mt-1"
+    class="relative z-0 bg-no-repeat -mt-1 pb-60"
     :style="{
       backgroundImage: `url(${FantasyScene})`,
-      backgroundPosition: 'center center',
+      // backgroundPosition: 'center center',
       backgroundSize: '100% auto',
     }"
   >
@@ -364,37 +364,37 @@ const faq = [
         </li>
       </ul>
     </div>
+  </div>
 
-    <!-- Slotomania Players Reviews with custom background that overwrites FantasyScene -->
-    <div
-      class="mt-20 relative z-0"
-      :style="{
-        backgroundImage: `url(${PlayersReviews})`,
-        backgroundSize: '100% auto',
-      }" 
-    >
-      <div class="px-4 md:px-40 pb-96 relative z-10">
-        <h2 class="text-2xl font-bold text-center mb-8">SLOTOMANIA PLAYER'S REVIEWS</h2>
-        <ul
-          class="flex gap-6 overflow-x-auto pb-6 snap-x snap-mandatory scroll-smooth whitespace-nowrap"
+  <!-- Slotomania Players Reviews with custom background that overwrites FantasyScene -->
+  <div
+    class="mt-96 relative z-0 border-2 border-black"
+    :style="{
+      backgroundImage: `url(${PlayersReviews})`,
+      backgroundSize: '100% auto',
+    }"
+  >
+    <div class="px-4 md:px-40 pb-96 relative z-10">
+      <h2 class="text-2xl font-bold text-center mb-8">SLOTOMANIA PLAYER'S REVIEWS</h2>
+      <ul
+        class="flex gap-6 overflow-x-auto pb-6 snap-x snap-mandatory scroll-smooth whitespace-nowrap"
+      >
+        <li
+          v-for="(humanReview, index) in humanReview"
+          :key="index"
+          class="inline-flex flex-col items-center p-4 bg-gray-100 rounded-lg snap-start min-w-[250px] md:min-w-[300px]"
         >
-          <li
-            v-for="(humanReview, index) in humanReview"
-            :key="index"
-            class="inline-flex flex-col items-center p-4 bg-gray-100 rounded-lg snap-start min-w-[250px] md:min-w-[300px]"
-          >
-            <div class="text-center whitespace-normal">
-              <img
-                :src="humanReview.image"
-                alt="Profile Picture"
-                class="w-24 h-24 rounded-full mb-4 mx-auto"
-              />
-              <h3 class="font-semibold text-lg mb-2">{{ humanReview.name }}</h3>
-              <p class="text-sm text-gray-700">{{ humanReview.review }}</p>
-            </div>
-          </li>
-        </ul>
-      </div>
+          <div class="text-center whitespace-normal">
+            <img
+              :src="humanReview.image"
+              alt="Profile Picture"
+              class="w-24 h-24 rounded-full mb-4 mx-auto"
+            />
+            <h3 class="font-semibold text-lg mb-2">{{ humanReview.name }}</h3>
+            <p class="text-sm text-gray-700">{{ humanReview.review }}</p>
+          </div>
+        </li>
+      </ul>
     </div>
   </div>
 
