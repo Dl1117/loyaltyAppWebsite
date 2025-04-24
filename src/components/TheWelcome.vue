@@ -260,9 +260,9 @@ const faq = [
   </div>
 
   <!-- Halloween Background Section -->
-  <div class="mt-20 w-full relative">
+  <div class="mt-20 w-full z-20">
     <div>
-      <img :src="HalloweenBackground" alt="Halloween Background" class="w-full" />
+      <img :src="HalloweenBackground" alt="Halloween Background" class="w-full z-20" />
     </div>
 
     <!-- Blue Cloud Transition -->
@@ -271,11 +271,14 @@ const faq = [
     </div>
   </div>
 
-  <div class="relative z-0 -mt-1">
-    <div class="absolute -z-10">
-      <img :src="FantasyScene" alt="3D Fantasy Scene" class="h-46" />
-    </div>
-
+  <div
+    class="relative z-0 bg-no-repeat -mt-1"
+    :style="{
+      backgroundImage: `url(${FantasyScene})`,
+      backgroundPosition: 'center center',
+      backgroundSize: '100% auto',
+    }"
+  >
     <!-- SLOTOMANIA GOING SOCIAL -->
     <div
       class="flex flex-col md:flex-row items-center justify-between w-full gap-6 md:gap-0 px-4 md:px-20 py-10"
@@ -295,7 +298,7 @@ const faq = [
     </div>
 
     <!-- MASCOT CONTEXT -->
-    <div class="mt-20 px-4 md:px-20 pb-20">
+    <div class="mt-20 px-4">
       <ul
         class="w-full flex flex-col md:flex-row flex-wrap justify-center md:justify-between gap-4"
       >
@@ -349,10 +352,13 @@ const faq = [
 
     <!-- Slotomania Players Reviews with custom background that overwrites FantasyScene -->
     <div
-      class="mt-40 relative z-0 bg-cover bg-center"
-      :style="`background-image: url(${PlayersReviews});`"
+      class="mt-20 relative z-0"
+      :style="{
+        backgroundImage: `url(${PlayersReviews})`,
+        backgroundSize: '100% auto',
+      }" 
     >
-      <div class="px-4 md:px-40 pb-20 relative z-10">
+      <div class="px-4 md:px-40 pb-96 relative z-10">
         <h2 class="text-2xl font-bold text-center mb-8">SLOTOMANIA PLAYER'S REVIEWS</h2>
         <ul
           class="flex gap-6 overflow-x-auto pb-6 snap-x snap-mandatory scroll-smooth whitespace-nowrap"
@@ -377,7 +383,7 @@ const faq = [
     </div>
   </div>
 
-  <div class="mt-20">
+  <div class="mt-10">
     <div>
       <div class="text-2xl font-bold text-center mb-8">
         <h1>TOP FREE SLOT GAMES ONLINE</h1>
