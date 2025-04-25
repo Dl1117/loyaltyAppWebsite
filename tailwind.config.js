@@ -164,6 +164,7 @@ export default {
         'custom-grey-6': '#F5F6FA',
         'custom-grey-7': '#F0F3F5',
         'custom-grey-8': '#8D8F99',
+        'custom-grey-9': '#001F2B',
         'custom-red-1': '#F4434C',
         'custom-green-1': '#25D366',
       },
